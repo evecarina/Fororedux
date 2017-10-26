@@ -1,44 +1,21 @@
+import store from './store';
 
-import store from './store'
-
-// export const addname=()=>{
-//     this.store.push({name:this.input.value ,comment:this.comment.value,id:Utils.uuid(),confirmed:''});
-//     // this.guests.push({comment:this.comment.value,id:Utils.uuid(),confirmed:''});
-//     this.input.value='';      
-//     this.update();
-// }
-
-
-
-
-
-
-
-
-
-export const playAction = () => {
-   let selectedSong = store.getState().selectedSong  //el estado actual del store 
-   if (selectedSong == -1 )
-      selectedSong = 0
-   //estado inicial
+export const addList = (user,opinion) => {
+   let oldList = store.getState().list;
+   const newList = oldList.concat({
+      id: oldList.length,
+      name: user,
+      comment: opinion 
+   });
    store.setState({
-      selectedSong : selectedSong
-   })
-}
+      list: newList
+   });
+};
 
-export const nextAction = () => {
-
-   let selectedSong = store.getState().selectedSong + 1
-   if (selectedSong == store.getState().songs.length )
-      selectedSong = 0
-
-   store.setState({
-      selectedSong : selectedSong
-   })
-}
-
-export const stopAction = () => {
-   store.setState({
-      selectedSong : -1
-   })
+export const deleteList = (id) => {
+  let lists = [...store.getState().list];
+  lists = lists.filter(item => item.id == id);
+  store.setState({
+    list: lists
+  });
 }

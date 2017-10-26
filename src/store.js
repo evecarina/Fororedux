@@ -1,18 +1,18 @@
+import createStore from 'redux-zero';
 
-import createStore from 'redux-zero'
-
-
-
-const USERS=[
-    {   
-        user:"maria",
-        comment:"hola"
-    }
+const LIST = [
+   {
+      id: 0,
+      name:'@maria',
+      comment: 'Helloo'
+   },
+  
 ];
 
- const initialState = {
-        users: USERS             
-}
+const initialState = {
+   list: LIST ,
+   selectedList: -1
+};
 
-const store = createStore (initialState)
-export default store
+const store = createStore(initialState);
+export default store;
